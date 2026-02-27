@@ -1,0 +1,17 @@
+!-------------------------------------------------------------------------------
+!                    --- DEVELOPER VARIABLES FOR ICPM ---                      !
+!-------------------------------------------------------------------------------
+!
+! WARNING: DO NOT CHANGE THESE INPUTS WITHOUT CONSULTING MODEL DEVELOPERS.
+!
+! --- developer data ---
+&developer
+!
+rmin = 0.002,    !< Lower boundary of dry aerosol sizes [um] 
+rmax = 10,    !< Upper boundary of dry aerosol sizes [um] 
+!
+variable_timestep = F,  !< T/F : Activates variable timestepping, will override user-chosen dt and dtsub
+!
+&END
+!-------------------------------------------------------------------------------
+!END OF FILE

@@ -1,0 +1,48 @@
+ 
+   ._______________________________________________________________________________.  
+   |                                                                               |  
+   |   ____     ___     _____    ____    ____    ___          _  _   ____    __    |  
+   |  (  _ \   / _ \   (  _  \  / ___)  (  __)  / __)  ___   / )( \ (  __)  /  \   |  
+   |   ) __/  /  .  \   )    /  \___ \   ) _)  ( (__  (___)  ) \/ (  ) _)  (  O )  |  
+   |  (__)    \_/ \_/  (__)\_)  (____/  (____)  \___)        \____/ (__)    \__/   |  
+   |                                                                               |  
+   |  Pseudo-Adiabatic bin-micRophySics university of Exeter Cloud parcel model    |  
+   |  - Unified Framework for Organics                  ___                        |  
+   |                                                 _/ .o. \_                     |  
+   |  Version 7.00                               -==:::::::::::==-                 /  
+   |  G. Roelofs, Utrecht University (ICPM)            `-=-'                      /   
+   |  D. Partridge, University of Exeter (PARSEC)                   ,~-.         /    
+   |  P. Bowen, University of Exeter (PARSEC)                     _( (  ).      /     
+   |  UFO                                                        ( `(  '  )    /      
+   |  S. Lowe, Stockholm University (PARSEC-UFO)                  `--=~~~'    /       
+   |  P. Bowen, University of Exeter (PARSEC-UFO)                            /        
+   |________________________________________________________________________/         
+ 
+--------------------------------------------------------------------------------------
+--------------------------------- UFO MODEL WARNINGS ---------------------------------
+ - all organics set to fully dissolved in calcab subroutine
+ - activation criteria 4 giving unexpected results with iconsvocs on
+ - icondsvocs on cannot be used with nat>1
+--------------------------------------------------------------------------------------
+ 
+--------------------------------------------------------------------------------------
+                                     Initialising                                     
+--------------------------------------------------------------------------------------
+ 
+nl and norg defined. nl= 25, norg=  0
+Constant parcel velocity
+Adiabatic Ascent
+Interpolation ON
+Logfile output is ON, output is written to logs
+Precipitation formation through coalescence is OFF
+ccn_conc_spectrum conversion [number/g of air]->[number/cm3] using model density
+Switches checked OK
+Rebinning will be performed using user-provided limits, read in from: 
+inputs/rebin-midpoint_radii.dat and 
+inputs/rebin-size_limits.dat
+Rebinning data read in from files
+Aerosol data from using user-provided data, read in from: 
+inputs/custom-concentration.dat and 
+inputs/custom-midpoint_radii.dat and 
+inputs/custom-size_limits.dat and 
+inputs/custom-composition.dat

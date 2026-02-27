@@ -1,0 +1,93 @@
+!-------------------------------------------------------------------------------
+!                           --- VARIABLES FOR ICPM ---                         !
+!-------------------------------------------------------------------------------
+! --- Time data ---
+&timedata
+dt         = 1,   !< Timestep for chemistry and coalescence [s]
+dtsub      = 0.1,   !< Timestep for dynamics/microphysics (< step for chemistry) [s]
+time_limit = 2000,   !< Upper simulation time limit [s] (a safety clause to end simulation)
+!
+&END
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- Commons data ---
+&commonsdata
+na         = 400,  !< Number of bins per aerosol type
+na_coa     = 100,  !< Number of bins in precipitation distribution
+nat        = 1,  !< Number of different aerosol compositions (types)
+mass_accom = 1,  !< Mass accommodation coefficient [dimensionless]
+surf_tens_w  = 72,  !< Surface tension [mN/m] (milli Newtons per m)
+!-------------------------------------------------------------------------------
+!  tracegas concentrations [ppm-v]: so2, o3, h2o2, nho3, nh3, co2
+gasconcppm = 0., 0., 0., 0., 0., 0. 
+!
+!-------------------------------------------------------------------------------
+! --- define aerosol data for if nat=1 ---
+!Aer1_modeX(1) :: Nx: number conc [m-3] || Aer1_propertyX(2) :: Rx: mean radius (um) || Aer1_propertyX(3) :: GSD [nm]
+Aer1_Nlognorm_modes = 3
+Aer1_mode1 = 82374858.02857748, 0.14393713460022942, 1.5,
+Aer1_mode2 = 272202502.0067447, 0.040828516385164104, 1.5,
+Aer1_mode3 = 285721510.9846851, 0.06896784891541975, 1.5,
+!Aer1_massfracs: The sequence of species is: h2so4, (nh4)hso4, (nh4)2so4, OC, BC, dust, seasalt
+Aer1_massfracs = 0., 0., 0.27166807776861135, 0., 0.04405136245675788, 0.08254317920169173, 0.29396088824313255, 0.30777649232980653, 
+!
+!---------------------------------------
+! Variables for usage with init_aer_m7 aerosol initialisation
+! Sulfate [molec/g]
+! conc_nucleation_mode: Sulfate (iso4ns) [molec/g]
+conc_nucleation_mode = 0.,
+! conc_aitken_mode: Sulfate (iso4ks) [molec/g]; Black carbon (ibcks) [ug/g]; Organic carbon (iocks) [ug/g]
+conc_aitken_mode = 0., 0., 0.,
+! conc_accumulation_mode: Sulfate (iso4as) [molec/g]; Black carbon (ibcas) [ug/g]; Organic carbon (iocas) [ug/g]; Sea salt (issas) [ug/g]; Dust (iduas) [ug/g]
+conc_accumulation_mode = 0., 0., 0., 0., 0.,
+! conc_coarse_mode: Sulfate (iso4cs) [molec/g]; Black carbon (ibccs) [ug/g]; Organic carbon (ioccs) [ug/g]; Sea salt (isscs) [ug/g]; Dust (iducs) [ug/g]
+conc_coarse_mode = 0., 0., 0., 0., 0.,
+!
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- Dynamics data ---
+&dynamicsdata
+initial_temperature = 272.4817          !< Temperature [K] (only needed if iupadiabat=FALSE)
+initial_pressure    = 95000,          !< Pressure [Pa]
+updraft             = 0.8,          !< Updraft velocity [m/s]
+downdraft           = 0,          !< Downdraft velocity [m/s] (this number should be positive, only works with vcycles>0)
+initial_relhum      = 90,          !< Relative humidity [percentage]
+entrainment_param   = 0,          !< Entrainment parameter, between 0 and 1 [dimensionless]
+cloud_depth         = 1200,          !< Cloud depth [m]
+initial_height      = 600,          !< Initial parcel height [m]
+initial_radius      = 350,          !< Initial parcel radius [m]
+zstopheight         = 0,          !< Only activates if istopheight=TRUE. The parcel vertical velocity is set to 0 at this height.
+!
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- Output data ---
+&outputdata
+pheightstep = 2,                              !< Profile step length [m]
+fixed_level_altitude_outputs = 0, 50, 100, 150, 200,                           !< Fixed levels to output at, must be used with ihoutputs=T. outputs to specH files
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- SVOC ---
+&svocdata
+initial_ctot = 0.34439296, 0.14193628, 0.15926595, 0.1404041, 0.1199196, 0.09408111, !< relative total concentrations [dimensionless]
+log_cstar_org = 0.0, 1.0, 2.0, 3.0, 4.0, 5.0, !< Volatility bins (can use up to 16 bins)
+min_org_film_thick   = 2e-10,            !< Minimum organic film thickness [nm] query: might be meters
+sigma_org            = 30,            !< Organics surface tension [mNm-1]
+org_sol_frac         = 1,            !< Soluble fraction used for non-VBS organic component when not modelling surface phase [dimensionless] (0->1)
+org_sol_frac_cf      = 0,            !< Soluble fraction used for approximate compressed film model [dimensionless] (0->1)
+org_e_sol_frac_vbs   = 1,            !< Effective solubility fraction [dimensionless] (0->1)
+org_densities        = 1500,            !< Organic densitites (same for all organics) [kg m-3]
+org_mol_mass         = 0.2,            !< Organic molar mass (same for all organics) [kg mol-1]
+org_vap_enthalpy     = 1500000,            !< Organic enthalpy of vapourisation (same for all organics) [J mol-1]
+org_alpha            = 1,            !< Organic mass accommodation coefficient (same for all organics) [dimensionless] (0->1)
+!
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+!END OF FILE

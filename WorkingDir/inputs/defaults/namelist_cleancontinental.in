@@ -1,0 +1,134 @@
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+!                --- DEFAULT VARIABLES FOR CLEAN CONTINENTAL ---               !
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! Default parameter values from Table 2, Partridge et al., Inverse modelling of
+! cloud-aerosol interactions – Part 2: Sensitivity tests on liquid phase clouds
+! using a Markov chain Monte Carlo based simulation approach. Atmos. Chem. Phys.,
+! 12:2823–2847, 2012
+
+
+
+
+!-------------------------------------------------------------------------------
+!                --- DEFAULT SWITCHES FOR CLEAN CONTINENTAL ---                !
+!-------------------------------------------------------------------------------
+! Switches
+&switchdata
+initflag        = 4,    !< 1/2/3/4/5 : Sets which aerosol input is desired (2-5 are pre-defined aerosol cases)
+                        !!             1 = Will use parameters set in namelist_UserVars.in
+                        !!             2 = Pre-defined marine average parameters from DP2012, DP2011 (all other switches in this namelist will be overrided)
+                        !!             3 = Pre-defined marine arctic parameters from DP2012, DP2011 (all other switches in this namelist will be overrided)
+                        !!             4 = Pre-defined clean continental parameters from DP2012, DP2011 (all other switches in this namelist will be overrided)
+                        !!             5 = Pre-defined polluted parameters from DP2012, DP2011 (all other switches in this namelist will be overrided)
+                        !!             See documentation for full defails of the pre-defined cases and full references.
+kprecip         = 0,    !< 0/1/2/... : Number of sub time-steps for precipitation formation through coalescence.
+vcycles         = 0,    !< 0/1/2/... : Specify number of vertical up/down cycles through cloud.
+envprofile      = 2,    !< 1/2/3 : Used to switch between environmental temperature profiles.
+                        !!         1 = User-defined profile
+                        !!         2 = Pre-defined summer profile
+                        !!         3 = Pre-defined winter profile
+                        !!         For full defails on these temperature profiles, see documentation.
+                        !!         NOTE: only has an effect when iupadiabat=FALSE.
+initwav         = 4,    !< 1/2/3 : Which wavelength file to use for calculation of optical properties.
+                        !!         1 = user specified
+                        !!         2 = Pre-defined, using king air campaign instrumentation
+                        !!         3 = Pre-defined, using ukesm1 campaign instrumentation
+                        !!         4 = Pre-defined, using activate campaign instrumentation
+                        !!         For full defails on these wavelengths, see documentation.
+initrebin       = 3,    !< 1/2/3 : Specify which limits to use in the rebinning of the droplet spectra.
+                        !!         1 = User specified
+                        !!         2 = Pre-defined, using maseii campaign instrumentation
+                        !!         3 = Pre-defined, using activate campaign instrumentation
+                        !!         For full defails on these rebin limits, see documentation.
+initaer         = 1,    !< 1/2 : Sets which aerosol initialisation to use.
+                        !!       1 = default
+                        !!       2 = m7par.
+ccn_output_type = 1,    !< 1/2 : `ccn_conc_spectrum` will be converted from [number/g of air]->[Number/cm3] using either:
+                        !!       1 = rho (as calculated within the model);
+                        !!       2 = p/(RT) (following the ideal gas law).
+iupconst        = T,    !< T/F : Defines the updraft/downdraft behaviour.
+                        !!       T = Constant updraft/downdraft velocity defined by user-input
+                        !!       F = Buoyancy explicitly calculated by the model, and used to set the vertical velocity
+istoptop        = F,    !< T/F : T = When parcel reaches neutral buoyancy and begins to fall, stop the vertical ascent/descent.
+                        !!       NOTE: may only be used with iupconst=FALSE.
+irainfall       = F,    !< T/F : T = Perform gravitational settling of precipitation sized drops
+iupadiabat      = F,    !< T/F : Specify ascent/descent dynamics type.
+                        !!       T = Adiabatic
+                        !!       F = Pseudo-adiabatic
+iaerenv         = F,    !< T/F : Entraining switch.
+                        !!       T = Entraining with aerosols (not currenly operational, do not use).
+                        !!       F = Entraining without aerosols
+istopheight     = F,    !< T/F : T = Parcel will stop vertical ascent at specified height through cloud, see `zstopheight` to set depth from cloud base.
+                        !!           With this TRUE, be careful to set `time_limit` to a sensible value.
+iendssmax       = F,    !< T/F : T = End simulation at maximum supersaturation
+ihoutputs       = F,    !< T/F : T = Use fixed_level_altitude_outputs in namelist to output at specific height levels
+interp          = F,    !< T/F : T = Perform interpolation after main loop directly onto pheightstep levels
+output_logs     = F,    !< T/F : T = Re-direct the standard I/O output is to `logs/logs.txt` and logs/logs_errors.txt`
+&END
+!
+!-------------------------------------------------------------------------------
+
+
+
+
+!-------------------------------------------------------------------------------
+!                --- DEFAULT VARIABLES FOR CLEAN CONTINENTAL ---               !
+!-------------------------------------------------------------------------------
+! --- Time data ---
+&timedata
+dt    = 1.0,        !< timestep for chemistry and coalescence [s]
+dtsub = 0.1,        !< timestep for dynamics/microphysics (< step for chemistry) [s]
+time_limit = 9e12   !< upper simulation time limit [s] (a safety clause to end simulation)
+!
+&END
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- Commons data ---
+&commonsdata
+na         = 400,   !< number of bins per aerosol type
+na_coa     = 100,   !< number of bins in precipitation distribution
+nat        = 1,     !< different aerosol compositions (types)
+mass_accom = 1.0,   !< mass accommodation coefficient
+surf_tens_w= 72.8,  !< surface tension [mN/m] (milli Newtons per m)
+!
+!-------------------------------------------------------------------------------
+! --- define aerosol data for nat=1 ---
+Aer1_Nlognorm_modes=2     !< number of lognormal modes for aerosol 1
+! Aer1_modeX(1) :: Nx: number conc [m-3] || Aer1_modeX(2) :: Rx: mean radius [um] || Aer1_modeX(3) :: GSD [nm]
+Aer1_mode1 = 1010.0e6, 0.0237, 1.71,
+Aer1_mode2 = 451.0e6, 0.0898, 1.58,
+!Aer1_massfracs: The sequence of species is: h2so4, (nh4)hso4, (nh4)2so4, OC, BC, dust, seasalt, SVOC
+Aer1_massfracs = 0.0, 0.7, 0.0, 0.0, 0.3, 0.0, 0.0, 0.0
+!
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- Dynamics data ---
+&dynamicsdata
+initial_temperature = 284.5,            !< temperature [K]
+initial_pressure    = 93850.0,          !< pressure [Pa]
+updraft             = 0.3,              !< updraft velocity [m/s]
+initial_relhum      = 99.9,             !< relative humidity [%]
+entrainment_param   = 0.0,              !< entrainment parameter []
+cloud_depth         = 300.0,            !< cloud depth [m]
+initial_height      = 600.0,            !< initial parcel height [m]
+initial_radius      = 350.0,            !< initial parcel radius [m]
+!
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+! --- Output data ---
+&outputdata
+pheightstep = 2.0,                      !< profile step length [m]
+&END
+!
+!-------------------------------------------------------------------------------
+!-------------------------------------------------------------------------------
+!END OF FILE
+
+
+

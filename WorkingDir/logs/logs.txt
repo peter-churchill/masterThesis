@@ -1,0 +1,1008 @@
+ 
+   ._______________________________________________________________________________.  
+   |                                                                               |  
+   |   ____     ___     _____    ____    ____    ___          _  _   ____    __    |  
+   |  (  _ \   / _ \   (  _  \  / ___)  (  __)  / __)  ___   / )( \ (  __)  /  \   |  
+   |   ) __/  /  .  \   )    /  \___ \   ) _)  ( (__  (___)  ) \/ (  ) _)  (  O )  |  
+   |  (__)    \_/ \_/  (__)\_)  (____/  (____)  \___)        \____/ (__)    \__/   |  
+   |                                                                               |  
+   |  Pseudo-Adiabatic bin-micRophySics university of Exeter Cloud parcel model    |  
+   |  - Unified Framework for Organics                  ___                        |  
+   |                                                 _/ .o. \_                     |  
+   |  Version 7.00                               -==:::::::::::==-                 /  
+   |  G. Roelofs, Utrecht University (ICPM)            `-=-'                      /   
+   |  D. Partridge, University of Exeter (PARSEC)                   ,~-.         /    
+   |  P. Bowen, University of Exeter (PARSEC)                     _( (  ).      /     
+   |  UFO                                                        ( `(  '  )    /      
+   |  S. Lowe, Stockholm University (PARSEC-UFO)                  `--=~~~'    /       
+   |  P. Bowen, University of Exeter (PARSEC-UFO)                            /        
+   |________________________________________________________________________/         
+ 
+--------------------------------------------------------------------------------------
+--------------------------------- UFO MODEL WARNINGS ---------------------------------
+ - all organics set to fully dissolved in calcab subroutine
+ - activation criteria 4 giving unexpected results with iconsvocs on
+ - icondsvocs on cannot be used with nat>1
+--------------------------------------------------------------------------------------
+ 
+--------------------------------------------------------------------------------------
+                                     Initialising                                     
+--------------------------------------------------------------------------------------
+ 
+nl and norg defined. nl= 37, norg=  6
+Constant parcel velocity
+Adiabatic Ascent
+Interpolation ON
+Logfile output is ON, output is written to logs
+Precipitation formation through coalescence is OFF
+icondsvocs=TRUE :: Condense/Evap Semi-volatiles
+ccn_conc_spectrum conversion [number/g of air]->[number/cm3] using model density
+Switches checked OK
+Rebinning will be performed using user-provided limits, read in from: 
+inputs/rebin-midpoint_radii.dat and 
+inputs/rebin-size_limits.dat
+Rebinning data read in from files
+VBS allocated
+Rebinning arrays allocated
+Commons arrays allocated
+Coalesc arrays allocated
+Kohler arrays allocated
+User-specified wavelengths will be read in from:
+inputs/wavelengths.dat
+Wavelengths allocated
+Wavelengths read in successfully
+Radiation arrays allocated
+Output profiles defined
+Dynamics initialised
+Time variables initialised
+Chemistry initialised
+Dynamics checked OK
+Commons checked OK
+Time checked OK
+netCDF files initialised
+Kohler curves calculated
+Coalesc initialised
+Initialisation complete
+   0.0000000000000000     
+ 
+--------------------------------- Model input summary --------------------------------
+ 
+Aerosol input from user defined aerosol/meteorology
+Aerosol distribution initialisation method: default
+Wavelengths input from user-defined list
+Limits for rebinning input from user-defined list
+ 
+___________________________________________
+Integer switches
+initflag : 1,  envprofile      : 1,  initaer :    1
+initwav  : 1,  ccn_output_type : 1,  vcycles :    0,  kprecip :    0
+ 
+Logical switches
+iupconst    : T,  istoptop    : F,  istopheight : F
+iaerenv     : F,  irainfall   : F,  iupadiabat  : T
+interp      : T,  ihoutputs   : F,  iendssmax   : F
+icompfilm   : F,  icondsvocs  : T
+output_logs : T
+ 
+___________________________________________
+Aerosol types and bins
+nat    (different aerosol types) :    1
+na     (dry size bins per type)  :  400
+na_coa (precipitation size bins) :  100
+ 
+___________________________________________
+Initial parcel properties
+Updraft velocity         [m/s] :       0.80
+Relative humidity          [%] :      90.00
+Parcel temperature         [K] :     272.48
+Parcel pressure           [Pa] :   95000.00
+Parcel height              [m] :     600.00
+Parcel radius              [m] :     350.00
+Cloud depth                [m] :    1200.00
+Surface tension         [mN/m] :      72.00
+Entrainment factor             :       0.00
+Mass accommodation coefficient :       1.00
+ 
+___________________________________________
+Time information
+dt    [s] :  1.00
+dtsub [s] :  0.10
+ 
+___________________________________________
+Aerosol type & mode properties
+______________________________
+                Num. conc. [#/m3]  Mean radius [um]  GSD [nm] 
+nat=1, mode=1 :        8.2375E+07            0.1439    1.5000
+nat=1, mode=2 :        2.7220E+08            0.0408    1.5000
+nat=1, mode=3 :        2.8572E+08            0.0690    1.5000
+ 
+___________________________________________
+Mass fractions
+______________
+            h2so4  (nh4)hso4  (nh4)2so4  Org. Carb   Bl. Carb       Dust    Seasalt 
+nat=1 :    0.0000     0.0000     0.2717     0.0000     0.0441     0.0825     0.2940   
+ 
+___________________________________________
+Information for aerosol type :        nat=1      Across
+                             :                aer types
+Number concentration   [#/g] :    5.272E+05   5.272E+05
+so4aer             [molec/g] :    5.847E+12   5.847E+12
+orgsolid           [molec/g] :    0.000E+00   0.000E+00
+black carb           [mug/g] :    2.081E-04   2.081E-04
+dust                 [mug/g] :    3.899E-04   3.899E-04
+seasalt Cl         [molec/g] :    1.431E+13   1.431E+13
+ 
+dry volume            [m3/g] :    2.631E-15   2.631E-15
+so4aer                [m3/g] :    6.273E-16   6.273E-16
+orgsolid              [m3/g] :    0.000E+00   0.000E+00
+black carb            [m3/g] :    1.040E-16   1.040E-16
+dust                  [m3/g] :    1.471E-16   1.471E-16
+seasalt Cl            [m3/g] :    6.413E-16   6.413E-16
+ 
+
+--------------------------- Writing model snapshot to file ---------------------------
+
+--------------------------------------------------------------------------------------
+                                   Simulation start                                   
+--------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ p a r c e l  r i s i n g ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Writing diagnostics at:  600.1m above surface
+Writing diagnostics at:  602.0m above surface
+Writing diagnostics at:  604.0m above surface
+Writing diagnostics at:  606.0m above surface
+Writing diagnostics at:  608.0m above surface
+Writing diagnostics at:  610.0m above surface
+Writing diagnostics at:  612.0m above surface
+Writing diagnostics at:  614.0m above surface
+Writing diagnostics at:  616.0m above surface
+Writing diagnostics at:  618.0m above surface
+Writing diagnostics at:  620.0m above surface
+Writing diagnostics at:  622.0m above surface
+Writing diagnostics at:  624.0m above surface
+Writing diagnostics at:  626.0m above surface
+Writing diagnostics at:  628.0m above surface
+Writing diagnostics at:  630.0m above surface
+Writing diagnostics at:  632.0m above surface
+Writing diagnostics at:  634.0m above surface
+Writing diagnostics at:  636.0m above surface
+Writing diagnostics at:  638.0m above surface
+Writing diagnostics at:  640.0m above surface
+Writing diagnostics at:  642.0m above surface
+Writing diagnostics at:  644.0m above surface
+Writing diagnostics at:  646.0m above surface
+Writing diagnostics at:  648.0m above surface
+Writing diagnostics at:  650.0m above surface
+Writing diagnostics at:  652.0m above surface
+Writing diagnostics at:  654.0m above surface
+Writing diagnostics at:  656.0m above surface
+Writing diagnostics at:  658.0m above surface
+Writing diagnostics at:  660.0m above surface
+Writing diagnostics at:  662.0m above surface
+Writing diagnostics at:  664.0m above surface
+Writing diagnostics at:  666.0m above surface
+Writing diagnostics at:  668.0m above surface
+Writing diagnostics at:  670.0m above surface
+Writing diagnostics at:  672.0m above surface
+Writing diagnostics at:  674.0m above surface
+Writing diagnostics at:  676.0m above surface
+Writing diagnostics at:  678.0m above surface
+Time:      100.0s,    679.92m above surface, velocity= 0.80m/s, ssat= -5.6572%
+Writing diagnostics at:  680.0m above surface
+Writing diagnostics at:  682.0m above surface
+Writing diagnostics at:  684.0m above surface
+Writing diagnostics at:  686.0m above surface
+Writing diagnostics at:  688.0m above surface
+Writing diagnostics at:  690.0m above surface
+Writing diagnostics at:  692.0m above surface
+Writing diagnostics at:  694.0m above surface
+Writing diagnostics at:  696.0m above surface
+Writing diagnostics at:  698.0m above surface
+Writing diagnostics at:  700.0m above surface
+Writing diagnostics at:  702.0m above surface
+Writing diagnostics at:  704.0m above surface
+Writing diagnostics at:  706.0m above surface
+Writing diagnostics at:  708.0m above surface
+Writing diagnostics at:  710.0m above surface
+Writing diagnostics at:  712.0m above surface
+Writing diagnostics at:  714.0m above surface
+Writing diagnostics at:  716.0m above surface
+Writing diagnostics at:  718.0m above surface
+Writing diagnostics at:  720.0m above surface
+Writing diagnostics at:  722.0m above surface
+Writing diagnostics at:  724.0m above surface
+Writing diagnostics at:  726.0m above surface
+Writing diagnostics at:  728.0m above surface
+Writing diagnostics at:  730.0m above surface
+Writing diagnostics at:  732.0m above surface
+Writing diagnostics at:  734.0m above surface
+Writing diagnostics at:  736.0m above surface
+Writing diagnostics at:  738.0m above surface
+Writing diagnostics at:  740.0m above surface
+Writing diagnostics at:  742.0m above surface
+Writing diagnostics at:  744.0m above surface
+Writing diagnostics at:  746.0m above surface
+Writing diagnostics at:  748.0m above surface
+Writing diagnostics at:  750.0m above surface
+Writing diagnostics at:  752.0m above surface
+Writing diagnostics at:  754.0m above surface
+Writing diagnostics at:  756.0m above surface
+Writing diagnostics at:  758.0m above surface
+Time:      200.0s,    759.92m above surface, velocity= 0.80m/s, ssat= -1.0705%
+Writing diagnostics at:  760.0m above surface
+Writing diagnostics at:  762.0m above surface
+Writing diagnostics at:  764.0m above surface
+Writing diagnostics at:  766.0m above surface
+Writing diagnostics at:  768.0m above surface
+Writing diagnostics at:  770.0m above surface
+Writing diagnostics at:  772.0m above surface
+Writing diagnostics at:  774.0m above surface
+Writing diagnostics at:  776.0m above surface
+Writing diagnostics at:  778.0m above surface
+                 ,--.  ,~~`-.         ,~--~.               ,-~'=-. ,~'`~-.            
+          ,~-. ,( , )_(   )  ),~~'-,_( `'   ) _,~=,_,~`~-.'    ) _(    _) ),          
+        _( (  ).  ` ( `( '  )  (  `(  '  )_  )    (   )   ).    (  `      ' )         
+       ( `(  '  )  (  ,~~==-'`-,~'(  `     ') )  (  '    `  ),'`~-'`~,=,~'``          
+        `--=~~~'`--~='`            `-~==~,~~-' `' `-~~'`=~'`       /////              
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ cloud base at 778.36m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+--------------------------- Writing model snapshot to file ---------------------------
+
+Writing diagnostics at:  780.0m above surface
+Writing diagnostics at:  782.0m above surface
+Writing diagnostics at:  784.0m above surface
+Writing diagnostics at:  786.0m above surface
+Writing diagnostics at:  788.0m above surface
+------------------------- Maximum supersaturation reached at -------------------------
+Time                      [s] :  235.000
+Altitude                  [m] :  788.000
+Altitude above cloud base [m] :    9.637
+Maximum supersaturation   [%] :    0.327
+--------------------------------------------------------------------------------------
+ 
+
+--------------------------- Writing model snapshot to file ---------------------------
+
+----------------------------- Creating extra netCDF files ----------------------------
+outputs/interp_nn_timeseries-ssmax.nc
+outputs/interp_nn_specH_timeseries-ssmax.nc
+--------------------------------------------------------------------------------------
+ 
+outputs/raw_timeseries.nc ---> outputs/raw_timeseries-ssmax.nc
+outputs/nn_timeseries.nc  ---> outputs/nn_timeseries-ssmax.nc
+Writing diagnostics at:  790.0m above surface
+Writing diagnostics at:  792.0m above surface
+Writing diagnostics at:  794.0m above surface
+Writing diagnostics at:  796.0m above surface
+Writing diagnostics at:  798.0m above surface
+Writing diagnostics at:  800.0m above surface
+Writing diagnostics at:  802.0m above surface
+Writing diagnostics at:  804.0m above surface
+Writing diagnostics at:  806.0m above surface
+Writing diagnostics at:  808.0m above surface
+Writing diagnostics at:  810.0m above surface
+Writing diagnostics at:  812.0m above surface
+Writing diagnostics at:  814.0m above surface
+Writing diagnostics at:  816.0m above surface
+Writing diagnostics at:  818.0m above surface
+Writing diagnostics at:  820.0m above surface
+Writing diagnostics at:  822.0m above surface
+Writing diagnostics at:  824.0m above surface
+Writing diagnostics at:  826.0m above surface
+Writing diagnostics at:  828.0m above surface
+Writing diagnostics at:  830.0m above surface
+Writing diagnostics at:  832.0m above surface
+Writing diagnostics at:  834.0m above surface
+Writing diagnostics at:  836.0m above surface
+Writing diagnostics at:  838.0m above surface
+Time:      300.0s,    839.92m above surface, velocity= 0.80m/s, ssat=  0.1295%
+Writing diagnostics at:  840.0m above surface
+Writing diagnostics at:  842.0m above surface
+Writing diagnostics at:  844.0m above surface
+Writing diagnostics at:  846.0m above surface
+Writing diagnostics at:  848.0m above surface
+Writing diagnostics at:  850.0m above surface
+Writing diagnostics at:  852.0m above surface
+Writing diagnostics at:  854.0m above surface
+Writing diagnostics at:  856.0m above surface
+Writing diagnostics at:  858.0m above surface
+Writing diagnostics at:  860.0m above surface
+Writing diagnostics at:  862.0m above surface
+Writing diagnostics at:  864.0m above surface
+Writing diagnostics at:  866.0m above surface
+Writing diagnostics at:  868.0m above surface
+Writing diagnostics at:  870.0m above surface
+Writing diagnostics at:  872.0m above surface
+Writing diagnostics at:  874.0m above surface
+Writing diagnostics at:  876.0m above surface
+Writing diagnostics at:  878.0m above surface
+Writing diagnostics at:  880.0m above surface
+Writing diagnostics at:  882.0m above surface
+Writing diagnostics at:  884.0m above surface
+Writing diagnostics at:  886.0m above surface
+Writing diagnostics at:  888.0m above surface
+Writing diagnostics at:  890.0m above surface
+Writing diagnostics at:  892.0m above surface
+Writing diagnostics at:  894.0m above surface
+Writing diagnostics at:  896.0m above surface
+Writing diagnostics at:  898.0m above surface
+Writing diagnostics at:  900.0m above surface
+Writing diagnostics at:  902.0m above surface
+Writing diagnostics at:  904.0m above surface
+Writing diagnostics at:  906.0m above surface
+Writing diagnostics at:  908.0m above surface
+Writing diagnostics at:  910.0m above surface
+Writing diagnostics at:  912.0m above surface
+Writing diagnostics at:  914.0m above surface
+Writing diagnostics at:  916.0m above surface
+Writing diagnostics at:  918.0m above surface
+Time:      400.0s,    919.92m above surface, velocity= 0.80m/s, ssat=  0.0972%
+Writing diagnostics at:  920.0m above surface
+Writing diagnostics at:  922.0m above surface
+Writing diagnostics at:  924.0m above surface
+Writing diagnostics at:  926.0m above surface
+Writing diagnostics at:  928.0m above surface
+Writing diagnostics at:  930.0m above surface
+Writing diagnostics at:  932.0m above surface
+Writing diagnostics at:  934.0m above surface
+Writing diagnostics at:  936.0m above surface
+Writing diagnostics at:  938.0m above surface
+Writing diagnostics at:  940.0m above surface
+Writing diagnostics at:  942.0m above surface
+Writing diagnostics at:  944.0m above surface
+Writing diagnostics at:  946.0m above surface
+Writing diagnostics at:  948.0m above surface
+Writing diagnostics at:  950.0m above surface
+Writing diagnostics at:  952.0m above surface
+Writing diagnostics at:  954.0m above surface
+Writing diagnostics at:  956.0m above surface
+Writing diagnostics at:  958.0m above surface
+Writing diagnostics at:  960.0m above surface
+Writing diagnostics at:  962.0m above surface
+Writing diagnostics at:  964.0m above surface
+Writing diagnostics at:  966.0m above surface
+Writing diagnostics at:  968.0m above surface
+Writing diagnostics at:  970.0m above surface
+Writing diagnostics at:  972.0m above surface
+Writing diagnostics at:  974.0m above surface
+Writing diagnostics at:  976.0m above surface
+Writing diagnostics at:  978.0m above surface
+Writing diagnostics at:  980.0m above surface
+Writing diagnostics at:  982.0m above surface
+Writing diagnostics at:  984.0m above surface
+Writing diagnostics at:  986.0m above surface
+Writing diagnostics at:  988.0m above surface
+Writing diagnostics at:  990.0m above surface
+Writing diagnostics at:  992.0m above surface
+Writing diagnostics at:  994.0m above surface
+Writing diagnostics at:  996.0m above surface
+Writing diagnostics at:  998.0m above surface
+Time:      500.0s,    999.92m above surface, velocity= 0.80m/s, ssat=  0.0841%
+Writing diagnostics at: 1000.0m above surface
+Writing diagnostics at: 1002.0m above surface
+Writing diagnostics at: 1004.0m above surface
+Writing diagnostics at: 1006.0m above surface
+Writing diagnostics at: 1008.0m above surface
+Writing diagnostics at: 1010.0m above surface
+Writing diagnostics at: 1012.0m above surface
+Writing diagnostics at: 1014.0m above surface
+Writing diagnostics at: 1016.0m above surface
+Writing diagnostics at: 1018.0m above surface
+Writing diagnostics at: 1020.0m above surface
+Writing diagnostics at: 1022.0m above surface
+Writing diagnostics at: 1024.0m above surface
+Writing diagnostics at: 1026.0m above surface
+Writing diagnostics at: 1028.0m above surface
+Writing diagnostics at: 1030.0m above surface
+Writing diagnostics at: 1032.0m above surface
+Writing diagnostics at: 1034.0m above surface
+Writing diagnostics at: 1036.0m above surface
+Writing diagnostics at: 1038.0m above surface
+Writing diagnostics at: 1040.0m above surface
+Writing diagnostics at: 1042.0m above surface
+Writing diagnostics at: 1044.0m above surface
+Writing diagnostics at: 1046.0m above surface
+Writing diagnostics at: 1048.0m above surface
+Writing diagnostics at: 1050.0m above surface
+Writing diagnostics at: 1052.0m above surface
+Writing diagnostics at: 1054.0m above surface
+Writing diagnostics at: 1056.0m above surface
+Writing diagnostics at: 1058.0m above surface
+Writing diagnostics at: 1060.0m above surface
+Writing diagnostics at: 1062.0m above surface
+Writing diagnostics at: 1064.0m above surface
+Writing diagnostics at: 1066.0m above surface
+Writing diagnostics at: 1068.0m above surface
+Writing diagnostics at: 1070.0m above surface
+Writing diagnostics at: 1072.0m above surface
+Writing diagnostics at: 1074.0m above surface
+Writing diagnostics at: 1076.0m above surface
+Writing diagnostics at: 1078.0m above surface
+Time:      600.0s,   1079.92m above surface, velocity= 0.80m/s, ssat=  0.0764%
+Writing diagnostics at: 1080.0m above surface
+Writing diagnostics at: 1082.0m above surface
+Writing diagnostics at: 1084.0m above surface
+Writing diagnostics at: 1086.0m above surface
+Writing diagnostics at: 1088.0m above surface
+Writing diagnostics at: 1090.0m above surface
+Writing diagnostics at: 1092.0m above surface
+Writing diagnostics at: 1094.0m above surface
+Writing diagnostics at: 1096.0m above surface
+Writing diagnostics at: 1098.0m above surface
+Writing diagnostics at: 1100.0m above surface
+Writing diagnostics at: 1102.0m above surface
+Writing diagnostics at: 1104.0m above surface
+Writing diagnostics at: 1106.0m above surface
+Writing diagnostics at: 1108.0m above surface
+Writing diagnostics at: 1110.0m above surface
+Writing diagnostics at: 1112.0m above surface
+Writing diagnostics at: 1114.0m above surface
+Writing diagnostics at: 1116.0m above surface
+Writing diagnostics at: 1118.0m above surface
+Writing diagnostics at: 1120.0m above surface
+Writing diagnostics at: 1122.0m above surface
+Writing diagnostics at: 1124.0m above surface
+Writing diagnostics at: 1126.0m above surface
+Writing diagnostics at: 1128.0m above surface
+Writing diagnostics at: 1130.0m above surface
+Writing diagnostics at: 1132.0m above surface
+Writing diagnostics at: 1134.0m above surface
+Writing diagnostics at: 1136.0m above surface
+Writing diagnostics at: 1138.0m above surface
+Writing diagnostics at: 1140.0m above surface
+Writing diagnostics at: 1142.0m above surface
+Writing diagnostics at: 1144.0m above surface
+Writing diagnostics at: 1146.0m above surface
+Writing diagnostics at: 1148.0m above surface
+Writing diagnostics at: 1150.0m above surface
+Writing diagnostics at: 1152.0m above surface
+Writing diagnostics at: 1154.0m above surface
+Writing diagnostics at: 1156.0m above surface
+Writing diagnostics at: 1158.0m above surface
+Time:      700.0s,   1159.92m above surface, velocity= 0.80m/s, ssat=  0.0711%
+Writing diagnostics at: 1160.0m above surface
+Writing diagnostics at: 1162.0m above surface
+Writing diagnostics at: 1164.0m above surface
+Writing diagnostics at: 1166.0m above surface
+Writing diagnostics at: 1168.0m above surface
+Writing diagnostics at: 1170.0m above surface
+Writing diagnostics at: 1172.0m above surface
+Writing diagnostics at: 1174.0m above surface
+Writing diagnostics at: 1176.0m above surface
+Writing diagnostics at: 1178.0m above surface
+Writing diagnostics at: 1180.0m above surface
+Writing diagnostics at: 1182.0m above surface
+Writing diagnostics at: 1184.0m above surface
+Writing diagnostics at: 1186.0m above surface
+Writing diagnostics at: 1188.0m above surface
+Writing diagnostics at: 1190.0m above surface
+Writing diagnostics at: 1192.0m above surface
+Writing diagnostics at: 1194.0m above surface
+Writing diagnostics at: 1196.0m above surface
+Writing diagnostics at: 1198.0m above surface
+Writing diagnostics at: 1200.0m above surface
+Writing diagnostics at: 1202.0m above surface
+Writing diagnostics at: 1204.0m above surface
+Writing diagnostics at: 1206.0m above surface
+Writing diagnostics at: 1208.0m above surface
+Writing diagnostics at: 1210.0m above surface
+Writing diagnostics at: 1212.0m above surface
+Writing diagnostics at: 1214.0m above surface
+Writing diagnostics at: 1216.0m above surface
+Writing diagnostics at: 1218.0m above surface
+Writing diagnostics at: 1220.0m above surface
+Writing diagnostics at: 1222.0m above surface
+Writing diagnostics at: 1224.0m above surface
+Writing diagnostics at: 1226.0m above surface
+Writing diagnostics at: 1228.0m above surface
+Writing diagnostics at: 1230.0m above surface
+Writing diagnostics at: 1232.0m above surface
+Writing diagnostics at: 1234.0m above surface
+Writing diagnostics at: 1236.0m above surface
+Writing diagnostics at: 1238.0m above surface
+Time:      800.0s,   1239.92m above surface, velocity= 0.80m/s, ssat=  0.0673%
+Writing diagnostics at: 1240.0m above surface
+Writing diagnostics at: 1242.0m above surface
+Writing diagnostics at: 1244.0m above surface
+Writing diagnostics at: 1246.0m above surface
+Writing diagnostics at: 1248.0m above surface
+Writing diagnostics at: 1250.0m above surface
+Writing diagnostics at: 1252.0m above surface
+Writing diagnostics at: 1254.0m above surface
+Writing diagnostics at: 1256.0m above surface
+Writing diagnostics at: 1258.0m above surface
+Writing diagnostics at: 1260.0m above surface
+Writing diagnostics at: 1262.0m above surface
+Writing diagnostics at: 1264.1m above surface
+Writing diagnostics at: 1266.1m above surface
+Writing diagnostics at: 1268.1m above surface
+Writing diagnostics at: 1270.1m above surface
+Writing diagnostics at: 1272.1m above surface
+Writing diagnostics at: 1274.1m above surface
+Writing diagnostics at: 1276.1m above surface
+Writing diagnostics at: 1278.1m above surface
+Writing diagnostics at: 1280.1m above surface
+Writing diagnostics at: 1282.1m above surface
+Writing diagnostics at: 1284.1m above surface
+Writing diagnostics at: 1286.1m above surface
+Writing diagnostics at: 1288.1m above surface
+Writing diagnostics at: 1290.1m above surface
+Writing diagnostics at: 1292.1m above surface
+Writing diagnostics at: 1294.1m above surface
+Writing diagnostics at: 1296.1m above surface
+Writing diagnostics at: 1298.1m above surface
+Writing diagnostics at: 1300.1m above surface
+Writing diagnostics at: 1302.1m above surface
+Writing diagnostics at: 1304.1m above surface
+Writing diagnostics at: 1306.1m above surface
+Writing diagnostics at: 1308.1m above surface
+Writing diagnostics at: 1310.1m above surface
+Writing diagnostics at: 1312.1m above surface
+Writing diagnostics at: 1314.1m above surface
+Writing diagnostics at: 1316.1m above surface
+Writing diagnostics at: 1318.1m above surface
+Time:      900.0s,   1319.92m above surface, velocity= 0.80m/s, ssat=  0.0643%
+Writing diagnostics at: 1320.1m above surface
+Writing diagnostics at: 1322.1m above surface
+Writing diagnostics at: 1324.1m above surface
+Writing diagnostics at: 1326.1m above surface
+Writing diagnostics at: 1328.1m above surface
+Writing diagnostics at: 1330.1m above surface
+Writing diagnostics at: 1332.1m above surface
+Writing diagnostics at: 1334.1m above surface
+Writing diagnostics at: 1336.1m above surface
+Writing diagnostics at: 1338.1m above surface
+Writing diagnostics at: 1340.1m above surface
+Writing diagnostics at: 1342.1m above surface
+Writing diagnostics at: 1344.1m above surface
+Writing diagnostics at: 1346.1m above surface
+Writing diagnostics at: 1348.1m above surface
+Writing diagnostics at: 1350.1m above surface
+Writing diagnostics at: 1352.1m above surface
+Writing diagnostics at: 1354.1m above surface
+Writing diagnostics at: 1356.1m above surface
+Writing diagnostics at: 1358.1m above surface
+Writing diagnostics at: 1360.1m above surface
+Writing diagnostics at: 1362.1m above surface
+Writing diagnostics at: 1364.1m above surface
+Writing diagnostics at: 1366.1m above surface
+Writing diagnostics at: 1368.1m above surface
+Writing diagnostics at: 1370.1m above surface
+Writing diagnostics at: 1372.1m above surface
+Writing diagnostics at: 1374.1m above surface
+Writing diagnostics at: 1376.1m above surface
+Writing diagnostics at: 1378.1m above surface
+Writing diagnostics at: 1380.1m above surface
+Writing diagnostics at: 1382.1m above surface
+Writing diagnostics at: 1384.1m above surface
+Writing diagnostics at: 1386.1m above surface
+Writing diagnostics at: 1388.1m above surface
+Writing diagnostics at: 1390.1m above surface
+Writing diagnostics at: 1392.1m above surface
+Writing diagnostics at: 1394.1m above surface
+Writing diagnostics at: 1396.1m above surface
+Writing diagnostics at: 1398.1m above surface
+Time:     1000.0s,   1399.92m above surface, velocity= 0.80m/s, ssat=  0.0619%
+Writing diagnostics at: 1400.1m above surface
+Writing diagnostics at: 1402.1m above surface
+Writing diagnostics at: 1404.1m above surface
+Writing diagnostics at: 1406.1m above surface
+Writing diagnostics at: 1408.1m above surface
+Writing diagnostics at: 1410.1m above surface
+Writing diagnostics at: 1412.1m above surface
+Writing diagnostics at: 1414.1m above surface
+Writing diagnostics at: 1416.1m above surface
+Writing diagnostics at: 1418.1m above surface
+Writing diagnostics at: 1420.1m above surface
+Writing diagnostics at: 1422.1m above surface
+Writing diagnostics at: 1424.1m above surface
+Writing diagnostics at: 1426.1m above surface
+Writing diagnostics at: 1428.1m above surface
+Writing diagnostics at: 1430.1m above surface
+Writing diagnostics at: 1432.1m above surface
+Writing diagnostics at: 1434.1m above surface
+Writing diagnostics at: 1436.1m above surface
+Writing diagnostics at: 1438.1m above surface
+Writing diagnostics at: 1440.1m above surface
+Writing diagnostics at: 1442.1m above surface
+Writing diagnostics at: 1444.1m above surface
+Writing diagnostics at: 1446.1m above surface
+Writing diagnostics at: 1448.1m above surface
+Writing diagnostics at: 1450.1m above surface
+Writing diagnostics at: 1452.1m above surface
+Writing diagnostics at: 1454.1m above surface
+Writing diagnostics at: 1456.1m above surface
+Writing diagnostics at: 1458.1m above surface
+Writing diagnostics at: 1460.1m above surface
+Writing diagnostics at: 1462.1m above surface
+Writing diagnostics at: 1464.1m above surface
+Writing diagnostics at: 1466.1m above surface
+Writing diagnostics at: 1468.1m above surface
+Writing diagnostics at: 1470.1m above surface
+Writing diagnostics at: 1472.1m above surface
+Writing diagnostics at: 1474.1m above surface
+Writing diagnostics at: 1476.1m above surface
+Writing diagnostics at: 1478.1m above surface
+Time:     1100.0s,   1479.92m above surface, velocity= 0.80m/s, ssat=  0.0600%
+Writing diagnostics at: 1480.1m above surface
+Writing diagnostics at: 1482.1m above surface
+Writing diagnostics at: 1484.1m above surface
+Writing diagnostics at: 1486.1m above surface
+Writing diagnostics at: 1488.1m above surface
+Writing diagnostics at: 1490.1m above surface
+Writing diagnostics at: 1492.1m above surface
+Writing diagnostics at: 1494.1m above surface
+Writing diagnostics at: 1496.1m above surface
+Writing diagnostics at: 1498.1m above surface
+Writing diagnostics at: 1500.1m above surface
+Writing diagnostics at: 1502.1m above surface
+Writing diagnostics at: 1504.1m above surface
+Writing diagnostics at: 1506.1m above surface
+Writing diagnostics at: 1508.1m above surface
+Writing diagnostics at: 1510.1m above surface
+Writing diagnostics at: 1512.1m above surface
+Writing diagnostics at: 1514.1m above surface
+Writing diagnostics at: 1516.1m above surface
+Writing diagnostics at: 1518.1m above surface
+Writing diagnostics at: 1520.1m above surface
+Writing diagnostics at: 1522.1m above surface
+Writing diagnostics at: 1524.1m above surface
+Writing diagnostics at: 1526.1m above surface
+Writing diagnostics at: 1528.1m above surface
+Writing diagnostics at: 1530.1m above surface
+Writing diagnostics at: 1532.1m above surface
+Writing diagnostics at: 1534.1m above surface
+Writing diagnostics at: 1536.1m above surface
+Writing diagnostics at: 1538.1m above surface
+Writing diagnostics at: 1540.1m above surface
+Writing diagnostics at: 1542.1m above surface
+Writing diagnostics at: 1544.1m above surface
+Writing diagnostics at: 1546.1m above surface
+Writing diagnostics at: 1548.1m above surface
+Writing diagnostics at: 1550.1m above surface
+Writing diagnostics at: 1552.1m above surface
+Writing diagnostics at: 1554.1m above surface
+Writing diagnostics at: 1556.1m above surface
+Writing diagnostics at: 1558.1m above surface
+Time:     1200.0s,   1559.92m above surface, velocity= 0.80m/s, ssat=  0.0584%
+Writing diagnostics at: 1560.1m above surface
+Writing diagnostics at: 1562.1m above surface
+Writing diagnostics at: 1564.1m above surface
+Writing diagnostics at: 1566.1m above surface
+Writing diagnostics at: 1568.1m above surface
+Writing diagnostics at: 1570.1m above surface
+Writing diagnostics at: 1572.1m above surface
+Writing diagnostics at: 1574.1m above surface
+Writing diagnostics at: 1576.1m above surface
+Writing diagnostics at: 1578.1m above surface
+Writing diagnostics at: 1580.1m above surface
+Writing diagnostics at: 1582.1m above surface
+Writing diagnostics at: 1584.1m above surface
+Writing diagnostics at: 1586.1m above surface
+Writing diagnostics at: 1588.1m above surface
+Writing diagnostics at: 1590.1m above surface
+Writing diagnostics at: 1592.1m above surface
+Writing diagnostics at: 1594.1m above surface
+Writing diagnostics at: 1596.1m above surface
+Writing diagnostics at: 1598.1m above surface
+Writing diagnostics at: 1600.1m above surface
+Writing diagnostics at: 1602.1m above surface
+Writing diagnostics at: 1604.1m above surface
+Writing diagnostics at: 1606.1m above surface
+Writing diagnostics at: 1608.1m above surface
+Writing diagnostics at: 1610.1m above surface
+Writing diagnostics at: 1612.1m above surface
+Writing diagnostics at: 1614.1m above surface
+Writing diagnostics at: 1616.1m above surface
+Writing diagnostics at: 1618.1m above surface
+Writing diagnostics at: 1620.1m above surface
+Writing diagnostics at: 1622.1m above surface
+Writing diagnostics at: 1624.1m above surface
+Writing diagnostics at: 1626.1m above surface
+Writing diagnostics at: 1628.1m above surface
+Writing diagnostics at: 1630.1m above surface
+Writing diagnostics at: 1632.1m above surface
+Writing diagnostics at: 1634.1m above surface
+Writing diagnostics at: 1636.1m above surface
+Writing diagnostics at: 1638.1m above surface
+Time:     1300.0s,   1639.92m above surface, velocity= 0.80m/s, ssat=  0.0570%
+Writing diagnostics at: 1640.1m above surface
+Writing diagnostics at: 1642.1m above surface
+Writing diagnostics at: 1644.1m above surface
+Writing diagnostics at: 1646.1m above surface
+Writing diagnostics at: 1648.1m above surface
+Writing diagnostics at: 1650.1m above surface
+Writing diagnostics at: 1652.1m above surface
+Writing diagnostics at: 1654.1m above surface
+Writing diagnostics at: 1656.1m above surface
+Writing diagnostics at: 1658.1m above surface
+Writing diagnostics at: 1660.1m above surface
+Writing diagnostics at: 1662.1m above surface
+Writing diagnostics at: 1664.1m above surface
+Writing diagnostics at: 1666.1m above surface
+Writing diagnostics at: 1668.1m above surface
+Writing diagnostics at: 1670.1m above surface
+Writing diagnostics at: 1672.1m above surface
+Writing diagnostics at: 1674.1m above surface
+Writing diagnostics at: 1676.1m above surface
+Writing diagnostics at: 1678.1m above surface
+Writing diagnostics at: 1680.1m above surface
+Writing diagnostics at: 1682.1m above surface
+Writing diagnostics at: 1684.1m above surface
+Writing diagnostics at: 1686.1m above surface
+Writing diagnostics at: 1688.1m above surface
+Writing diagnostics at: 1690.1m above surface
+Writing diagnostics at: 1692.1m above surface
+Writing diagnostics at: 1694.1m above surface
+Writing diagnostics at: 1696.1m above surface
+Writing diagnostics at: 1698.1m above surface
+Writing diagnostics at: 1700.1m above surface
+Writing diagnostics at: 1702.1m above surface
+Writing diagnostics at: 1704.1m above surface
+Writing diagnostics at: 1706.1m above surface
+Writing diagnostics at: 1708.1m above surface
+Writing diagnostics at: 1710.1m above surface
+Writing diagnostics at: 1712.1m above surface
+Writing diagnostics at: 1714.1m above surface
+Writing diagnostics at: 1716.1m above surface
+Writing diagnostics at: 1718.1m above surface
+Time:     1400.0s,   1719.92m above surface, velocity= 0.80m/s, ssat=  0.0558%
+Writing diagnostics at: 1720.1m above surface
+Writing diagnostics at: 1722.1m above surface
+Writing diagnostics at: 1724.1m above surface
+Writing diagnostics at: 1726.1m above surface
+Writing diagnostics at: 1728.1m above surface
+Writing diagnostics at: 1730.1m above surface
+Writing diagnostics at: 1732.1m above surface
+Writing diagnostics at: 1734.1m above surface
+Writing diagnostics at: 1736.1m above surface
+Writing diagnostics at: 1738.1m above surface
+Writing diagnostics at: 1740.1m above surface
+Writing diagnostics at: 1742.1m above surface
+Writing diagnostics at: 1744.1m above surface
+Writing diagnostics at: 1746.1m above surface
+Writing diagnostics at: 1748.1m above surface
+Writing diagnostics at: 1750.1m above surface
+Writing diagnostics at: 1752.1m above surface
+Writing diagnostics at: 1754.1m above surface
+Writing diagnostics at: 1756.1m above surface
+Writing diagnostics at: 1758.1m above surface
+Writing diagnostics at: 1760.1m above surface
+Writing diagnostics at: 1762.1m above surface
+Writing diagnostics at: 1764.1m above surface
+Writing diagnostics at: 1766.1m above surface
+Writing diagnostics at: 1768.1m above surface
+Writing diagnostics at: 1770.1m above surface
+Writing diagnostics at: 1772.1m above surface
+Writing diagnostics at: 1774.1m above surface
+Writing diagnostics at: 1776.1m above surface
+Writing diagnostics at: 1778.1m above surface
+Writing diagnostics at: 1780.1m above surface
+Writing diagnostics at: 1782.1m above surface
+Writing diagnostics at: 1784.1m above surface
+Writing diagnostics at: 1786.1m above surface
+Writing diagnostics at: 1788.1m above surface
+Writing diagnostics at: 1790.1m above surface
+Writing diagnostics at: 1792.1m above surface
+Writing diagnostics at: 1794.1m above surface
+Writing diagnostics at: 1796.1m above surface
+Writing diagnostics at: 1798.1m above surface
+Time:     1500.0s,   1799.92m above surface, velocity= 0.80m/s, ssat=  0.0548%
+Writing diagnostics at: 1800.1m above surface
+Writing diagnostics at: 1802.1m above surface
+Writing diagnostics at: 1804.1m above surface
+Writing diagnostics at: 1806.1m above surface
+Writing diagnostics at: 1808.1m above surface
+Writing diagnostics at: 1810.1m above surface
+Writing diagnostics at: 1812.1m above surface
+Writing diagnostics at: 1814.1m above surface
+Writing diagnostics at: 1816.1m above surface
+Writing diagnostics at: 1818.1m above surface
+Writing diagnostics at: 1820.1m above surface
+Writing diagnostics at: 1822.1m above surface
+Writing diagnostics at: 1824.1m above surface
+Writing diagnostics at: 1826.1m above surface
+Writing diagnostics at: 1828.1m above surface
+Writing diagnostics at: 1830.1m above surface
+Writing diagnostics at: 1832.1m above surface
+Writing diagnostics at: 1834.1m above surface
+Writing diagnostics at: 1836.1m above surface
+Writing diagnostics at: 1838.1m above surface
+Writing diagnostics at: 1840.1m above surface
+Writing diagnostics at: 1842.1m above surface
+Writing diagnostics at: 1844.1m above surface
+Writing diagnostics at: 1846.1m above surface
+Writing diagnostics at: 1848.1m above surface
+Writing diagnostics at: 1850.1m above surface
+Writing diagnostics at: 1852.1m above surface
+Writing diagnostics at: 1854.1m above surface
+Writing diagnostics at: 1856.1m above surface
+Writing diagnostics at: 1858.1m above surface
+Writing diagnostics at: 1860.1m above surface
+Writing diagnostics at: 1862.1m above surface
+Writing diagnostics at: 1864.1m above surface
+Writing diagnostics at: 1866.1m above surface
+Writing diagnostics at: 1868.1m above surface
+Writing diagnostics at: 1870.1m above surface
+Writing diagnostics at: 1872.1m above surface
+Writing diagnostics at: 1874.1m above surface
+Writing diagnostics at: 1876.1m above surface
+Writing diagnostics at: 1878.1m above surface
+Time:     1600.0s,   1879.92m above surface, velocity= 0.80m/s, ssat=  0.0539%
+Writing diagnostics at: 1880.1m above surface
+Writing diagnostics at: 1882.1m above surface
+Writing diagnostics at: 1884.1m above surface
+Writing diagnostics at: 1886.1m above surface
+Writing diagnostics at: 1888.1m above surface
+Writing diagnostics at: 1890.1m above surface
+Writing diagnostics at: 1892.1m above surface
+Writing diagnostics at: 1894.1m above surface
+Writing diagnostics at: 1896.1m above surface
+Writing diagnostics at: 1898.1m above surface
+Writing diagnostics at: 1900.1m above surface
+Writing diagnostics at: 1902.1m above surface
+Writing diagnostics at: 1904.1m above surface
+Writing diagnostics at: 1906.1m above surface
+Writing diagnostics at: 1908.1m above surface
+Writing diagnostics at: 1910.1m above surface
+Writing diagnostics at: 1912.1m above surface
+Writing diagnostics at: 1914.1m above surface
+Writing diagnostics at: 1916.1m above surface
+Writing diagnostics at: 1918.1m above surface
+Writing diagnostics at: 1920.1m above surface
+Writing diagnostics at: 1922.1m above surface
+Writing diagnostics at: 1924.1m above surface
+Writing diagnostics at: 1926.1m above surface
+Writing diagnostics at: 1928.1m above surface
+Writing diagnostics at: 1930.1m above surface
+Writing diagnostics at: 1932.1m above surface
+Writing diagnostics at: 1934.1m above surface
+Writing diagnostics at: 1936.1m above surface
+Writing diagnostics at: 1938.1m above surface
+Writing diagnostics at: 1940.1m above surface
+Writing diagnostics at: 1942.1m above surface
+Writing diagnostics at: 1944.1m above surface
+Writing diagnostics at: 1946.1m above surface
+Writing diagnostics at: 1948.1m above surface
+Writing diagnostics at: 1950.1m above surface
+Writing diagnostics at: 1952.1m above surface
+Writing diagnostics at: 1954.1m above surface
+Writing diagnostics at: 1956.1m above surface
+Writing diagnostics at: 1958.1m above surface
+Time:     1700.0s,   1959.92m above surface, velocity= 0.80m/s, ssat=  0.0531%
+Writing diagnostics at: 1960.1m above surface
+Writing diagnostics at: 1962.1m above surface
+Writing diagnostics at: 1964.1m above surface
+Writing diagnostics at: 1966.1m above surface
+Writing diagnostics at: 1968.1m above surface
+Writing diagnostics at: 1970.1m above surface
+Writing diagnostics at: 1972.1m above surface
+Writing diagnostics at: 1974.1m above surface
+Writing diagnostics at: 1976.1m above surface
+Writing diagnostics at: 1978.1m above surface
+                 ,--.  ,~~`-.         ,~--~.               ,-~'=-. ,~'`~-.            
+          ,~-. ,( , )_(   )  ),~~'-,_( `'   ) _,~=,_,~`~-.'    ) _(    _) ),          
+        _( (  ).  ` ( `( '  )  (  `(  '  )_  )    (   )   ).    (  `      ' )         
+       ( `(  '  )  (  ,~~==-'`-,~'(  `     ') )  (  '    `  ),'`~-'`~,=,~'``          
+        `--=~~~'`--~='`            `-~==~,~~-' `' `-~~'`=~'`       /////              
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ cloud top at 1978.36m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+--------------------------- Writing model snapshot to file ---------------------------
+
+ SO2 in ppm:    0.0000000000000000     
+ H2O2 in ppm:    0.0000000000000000     
+ O3 in ppm:    0.0000000000000000     
+                                                                                      
+              ,~-.                   ,~-.                                             
+            _( (  ).               ,(  ' )-.         ,~'`-.                           
+           ( `(  '  )           ,~' `  ' )  )      _(   _) )                          
+            `--=~~~'           ( ( .--.===.--.    (  `    ' )                         
+                                `.%%.;::|888.#`.   `-'`~~=~'`                         
+                                /%%/::::|8888\##\                   ,~~`-.            
+                ,~`~-.         |%%/:::::|88888\##|                _(   )  )           
+              (   )   ).       |%%|:::::|88888|##|.,-.           ( `( '  )            
+             (  '    `  )      \%%|:::::|88888|##/    )_          `~~==-'             
+              `-~~'`=~'`        \%\:::::|88888/#/ ( `'  )                             
+                                 \%\::::|8888/#/(  ,  -'`-.                           
+                             ,~-. `%\:::|888/#'(  (     ') )        ,~--~.            
+                            (  ) )_ `\__|__/'   `~-~=--~~='       _( `'   )           
+                           ( ` ')  ) [VVVVV]                     (  '  )_  )          
+                          (_(_.~~~'   \|_|/                     (  `     ') )         
+                                      [XXX]                      `-~==~,~~-'          
+                                       """                                            
+                                                                                      
+--------------------------------------------------------------------------------------
+                              Simulation output quicklook                             
+--------------------------------------------------------------------------------------
+ 
+Time                      [s] :      1723.00
+Pressure                 [Pa] :     79651.65
+Temperature               [K] :       262.35
+Air density            [g/m3] :      1057.66
+Altitude                  [m] :      1978.40
+Altitude above cloud base [m] :      1200.04
+Cloud base                [m] :       778.36
+Supersaturation           [%] :       0.0530
+Maximum supersaturation   [%] :       0.3274
+ 
+______________________________________________________________________________________
+Comparing activation criteria     :    aerosol=1  Across all   Coalesced  Across aer
+                                  :                 aerosols              type & coa
+______________________________________________________________________________________
+Activated fraction [criteria 1]   :        0.899       0.899       0.000       0.899
+Activated fraction [criteria 2]   :        0.899       0.899       0.000       0.899
+Activated fraction [criteria 3]   :        0.898       0.898       0.000       0.898
+Activated fraction [criteria 4]   :        0.899       0.899       0.000       0.899
+ 
+______________________________________________________________________________________
+Microphysical output for          :    aerosol=1  Across all   Coalesced  Across aer
+activated drops                   :                 aerosols              type & coa
+______________________________________________________________________________________
+Initial aerosols          [#/cm3] :      557.580     557.580       0.000     557.580
+Activated aerosols        [#/cm3] :      501.166     501.166       0.000     501.166
+Activated fraction                :        0.899       0.899       0.000       0.899
+Min dry activation radius    [nm] :       30.088
+ 
+Volume mean droplet radius   [um] :        8.746       8.746       0.000       8.746
+Mean droplet radius          [um] :        8.741       8.741       0.000       8.741
+Droplet effective radius          :        8.757       8.757       0.000       8.757
+Std. dev. of droplet radius  [um] :        0.214       0.214       0.000       0.214
+Liquid water content  [m3/m3_air] :    1.405E-06   1.405E-06   0.000E+00   1.405E-06
+Relative liquid water content [%] :      100.000     100.000       0.000     100.000
+ 
+Cloud optical depth (at  355.0nm) :      187.426     187.426       0.000     187.426
+Albedo              (at  355.0nm) :        0.934       0.934       0.000       0.934
+ 
+Note: Displaying results for activation criteria where droplet radius>1.00um
+ 
+______________________________________________________________________________________
+Microphysical output for          :    aerosol=1  Across all
+interstitial drops                :                 aerosols
+______________________________________________________________________________________
+Liquid water content  [m3/m3_air] :    3.223E-13   3.223E-13
+Relative liquid water content [%] :      100.000     100.000
+ 
+Cloud optical depth (at  355.0nm) :       17.637      17.637
+Albedo              (at  355.0nm) :        0.569       0.569
+ 
+Note: Displaying results for activation criteria where droplet radius>1.00um
+ 
+______________________________________________________________________________________
+Microphysical output for          :    aerosol=1  Across all   Coalesced  Across aer
+activated & interstitial drops    :                 aerosols              type & coa
+______________________________________________________________________________________
+Liquid water content  [m3/m3_air] :    1.405E-06   1.405E-06   0.000E+00   1.405E-06
+Relative liquid water content [%] :      100.000     100.000       0.000     100.000
+ 
+Cloud optical depth (at  355.0nm) :      187.439     187.439       0.000     187.439
+Albedo              (at  355.0nm) :        0.934       0.934       0.000       0.934
+ 
+______________________________________________________________________________________
+Chemistry for activated drops     :    aerosol=1  Across all   Coalesced  Across aer
+                                  :                 aerosols              type & coa
+______________________________________________________________________________________
+Aerosol sulphate    [molecules/g] :    6.176E+09   6.176E+09   0.000E+00   6.176E+09
+Sulphate from H2O2  [molecules/g] :    0.000E+00   0.000E+00   0.000E+00   0.000E+00
+Sulphate from O3    [molecules/g] :    0.000E+00   0.000E+00   0.000E+00   0.000E+00
+Activated sulphate            [%] :        0.106       0.106
+Cloud water pH                    :        7.000       7.000         n/a         n/a
+ 
+___________________________________________
+No rainfall
+ 
+___________________________________________
+Cloud has no electrical charge
+ 
+--------------------------------------------------------------------------------------
+                                   Ending simulation                                  
+--------------------------------------------------------------------------------------
+Elapsed CPU time =       8.66 seconds
+Interpolating onto profile height levels
+Interpolating onto profile height levels (ssmax file)
+Elapsed CPU time =      11.60 seconds
+netCDF files closed safely
+Elapsed CPU time =      14.15 seconds
+ 
+--------------------------------------------------------------------------------------
+                                  Simulation Complete                                 
+--------------------------------------------------------------------------------------
+ 

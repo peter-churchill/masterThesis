@@ -1,0 +1,3 @@
+CONFIGURATION ERROR: read_custom_aerosol
+File lengths of inputs/custom-size_limits.dat does not match nuber of aerosol bins
+EXECUTION STOPPED
